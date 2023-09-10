@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Riot API Example</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <label for="summoner_name">サモナーネーム:</label>
+        <input type="text" name="summoner_name" required>
+        <button type="submit">検索</button>
+    </form>
+
+    {% if summoner_data %}
+        <h2>{{ summoner_data.name }}</h2>
+        <p>Level: {{ summoner_data.summonerLevel }}</p>
+    {% endif %}
+
+    {% if match_details %}
+    <h3>最近の対戦詳細</h3>
+    <ul>
+        {% for detail in match_details %}
+            <li>
+                Game ID: {{ detail.gameId }} - Duration: {{ detail.gameDuration }} seconds
+                <!-- さらに詳細な情報を表示するためのコードを追加できます -->
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
